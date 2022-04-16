@@ -1,0 +1,57 @@
+.featuredTitle {
+  color: white;
+  font-size: 35px;
+  font-weight: 600;
+  justify-content: center;
+  display: flex;
+  letter-spacing: 2px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.albums {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 1000px;
+  width: 100%;
+  gap: 20px;
+  row-gap: 50px;
+  -webkit-box-pack: start;
+}
+
+.albumSelection {
+  color:rgb(205, 203, 203);
+  text-align: center;
+  transition: transform .4s;
+}
+
+.albumSelection:hover {
+  color: white;
+}
+
+.albumCover{
+  position: relative;
+  width: 150px;
+  height: 180px;
+  margin-bottom: 10px;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.albumCover img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  transition: 0.5s;
+  z-index: calc(1 + var(--i));
+  opacity: calc(1 - (0.2 * var(--j)));
+}
+
+.albumCover:hover img {
+  transform: rotate(-30deg) skew(25deg) translateX(calc(35px * var(--i))) translateY(calc(-35px * var(--i))) scale(0.75);
+}
