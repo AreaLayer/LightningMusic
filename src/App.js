@@ -22,6 +22,8 @@ const App = () => {
     await Moralis.authenticate({
       provider: "web3Auth",
       clientId: "BP_dGonobACd_as1e50cIsiSIvzqA3E1sIM_xVJU9JNvC5wms8Y8P82T0L5XaLjxD4KEGn7B6y-5TCO-n6hZdL4",
+      chainId: 0x13881,
+      // appLogo: "./logo192.png"
     })
   };
 

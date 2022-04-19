@@ -44,7 +44,7 @@ const Favorites = () => {
                       favorites.map((e) => {
                         return (
                           <Link to="/album" state={e} className="albumSelection" >
-                      <div class="albumCover">
+                      <div className="albumCover">
                         <img
                           src={e.image}
                           alt="bull"

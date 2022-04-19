@@ -3,69 +3,37 @@ import { useAlbum } from "../hooks/useAlbum";
 import { useLocation } from "react-router";
 import "./Album.css";
 import Opensea from "../images/opensea.png";
+import { ClockCircleOutlined } from "@ant-design/icons";
+import { message, Spin } from 'antd';
+import FavoriteButton from "../components/FavoriteButton";
+import { useState, useEffect } from "react";
 import { useMoralis } from "react-moralis";
-import { ClockCircleOutlined, HeartFilled } from "@ant-design/icons";
-import { message } from 'antd';
 
-// const bears = [
-//   {
-//     src: "https://ipfs.moralis.io:2053/ipfs/Qmf8xEYZdMtQXYv56VxxmzbtUtEVjmaFaXGCgcBqGXDAA6/music/JTwinkle.mp3",
-//     cover:
-//       "https://upload.wikimedia.org/wikipedia/en/6/69/B.o.B_-_Strange_Clouds_-_LP_Cover.jpg",
-//     album: "Strange Clouds",
-//     song: "Airplanes",
-//     duration: "0:05",
-//   },
-//   {
-//     src: "https://ipfs.moralis.io:2053/ipfs/QmUUhsAiUFq1B5JtzQH733CLBbUCnRekYXETMfeYG7PaZ3/music/JTiger.mp3",
-//     cover:
-//       "https://upload.wikimedia.org/wikipedia/en/d/d5/Ariana_Grande_My_Everything_2014_album_artwork.png",
-//     album: "My Everything",
-//     song: "Side To Side",
-//     duration: "0:16",
-//   },
-//   {
-//     src: "https://ipfs.moralis.io:2053/ipfs/QmUUhsAiUFq1B5JtzQH733CLBbUCnRekYXETMfeYG7PaZ3/music/JTiger.mp3",
-//     cover:
-//       "https://upload.wikimedia.org/wikipedia/en/d/d5/Ariana_Grande_My_Everything_2014_album_artwork.png",
-//     album: "My Everything",
-//     song: "Pizza and A Coke",
-//     duration: "5:01",
-//   },
-//   {
-//     src: "https://ipfs.moralis.io:2053/ipfs/QmUUhsAiUFq1B5JtzQH733CLBbUCnRekYXETMfeYG7PaZ3/music/JTiger.mp3",
-//     cover:
-//       "https://upload.wikimedia.org/wikipedia/en/d/d5/Ariana_Grande_My_Everything_2014_album_artwork.png",
-//     album: "My Everything",
-//     song: "Iceberg Lettuce",
-//     duration: "0:24",
-//   },
-//   {
-//     src: "https://ipfs.moralis.io:2053/ipfs/QmUUhsAiUFq1B5JtzQH733CLBbUCnRekYXETMfeYG7PaZ3/music/JTiger.mp3",
-//     cover:
-//       "https://upload.wikimedia.org/wikipedia/en/d/d5/Ariana_Grande_My_Everything_2014_album_artwork.png",
-//     album: "My Everything",
-//     song: "Spitting Chicklets",
-//     duration: "1:03",
-//   },
-//   {
-//     src: "https://ipfs.moralis.io:2053/ipfs/QmUUhsAiUFq1B5JtzQH733CLBbUCnRekYXETMfeYG7PaZ3/music/JTiger.mp3",
-//     cover:
-//       "https://upload.wikimedia.org/wikipedia/en/d/d5/Ariana_Grande_My_Everything_2014_album_artwork.png",
-//     album: "My Everything",
-//     song: "Boomerang",
-//     duration: "2:16",
-//   },
-// ];
 
 const Album = ({ setNftAlbum }) => {
   const { state: albumDetails } = useLocation();
   const { album } = useAlbum(albumDetails.contract);
-  const { isAuthenticated, Moralis, account } = useMoralis();
+  const { Moralis, account } = useMoralis();
+  const [favoriteList, setFavoritelist] = useState();
 
-  const handleAddNotification = () => {
-    message.success("Album added to favorites")
-  };
+  useEffect(() => {
+    async function fetchFavorites() {
+      await Moralis.start({
+        serverUrl: "https://gkx1aszh57hy.usemoralis.com:2053/server",
+        appId: "nhXoWGlnxP7U1RUeVuANk0AJEH0dzvYqsa1TR07n",
+      });
+
+      try {
+        const favList = await Moralis.Cloud.run("getFavorites", { addrs: account }); 
+        setFavoritelist(favList);
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
+    fetchFavorites();
+
+  }, [account])
 
   const handleNoContract = () => {
     message.error("Album does not have associated contract")
@@ -107,16 +75,7 @@ const Album = ({ setNftAlbum }) => {
             OpenSea
             <img src={Opensea} className="openLogo" alt="Opensea link"/>
           </div>
-          <HeartFilled 
-             className="addFav"
-             style={{ color: "#831AF9" }}
-             onClick={async () => {
-              await Moralis.Cloud.run("updateFavorites", {
-                addrs: account,
-                newFav: albumDetails.title,
-              });
-              handleAddNotification();
-            }} />
+          <div class="addFav">{favoriteList ? <FavoriteButton title={albumDetails.title} favList={favoriteList}/> : <Spin/> }</div>
         </div>
         <div className="tableHeader">
           <div className="numberHeader">#</div>
