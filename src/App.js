@@ -7,7 +7,7 @@ import Favorites from "./pages/Favorites";
 import './App.css';
 import { Link } from "react-router-dom";
 import Player from "./components/AudioPlayer";
-import { Layout, Spin } from "antd";
+import { Layout, message } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import { useMoralis } from "react-moralis";
 import Auth from './components/Auth';
@@ -40,7 +40,7 @@ const App = () => {
         <Layout>
           <Sider width={300} className="sideBar">
             <img src="logo192.png" alt="Logo" className="logo"></img>
-            <div className="searchBar">
+            <div className="searchBar" onClick={message.error("Work in Progress")}>
               <span> Search </span>
               <SearchOutlined style={{ fontSize: "30px" }} />
             </div>
