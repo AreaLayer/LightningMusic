@@ -75,7 +75,7 @@ const Album = ({ setNftAlbum }) => {
             OpenSea
             <img src={Opensea} className="openLogo" alt="Opensea link"/>
           </div>
-          <div class="addFav">{favoriteList ? <FavoriteButton title={albumDetails.title} favList={favoriteList}/> : <Spin/> }</div>
+          <div className="addFav">{favoriteList ? <FavoriteButton title={albumDetails.title} favList={favoriteList}/> : <Spin/> }</div>
         </div>
         <div className="tableHeader">
           <div className="numberHeader">#</div>

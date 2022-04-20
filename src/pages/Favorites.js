@@ -37,7 +37,7 @@ const Favorites = () => {
 
     return(
         <><h1 className="featuredTitle"> Your Music </h1><div className="albums">
-                {favorites && isAuthenticated ? (
+                {favorites && account ? (
                 <>
                   <div className="albums">
                     {
