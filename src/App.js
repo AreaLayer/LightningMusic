@@ -40,7 +40,7 @@ const App = () => {
         <Layout>
           <Sider width={300} className="sideBar">
             <img src="logo192.png" alt="Logo" className="logo"></img>
-            <div className="searchBar" onClick={message.error("Work in Progress")}>
+            <div className="searchBar" onClick={() => message.error("Work in Progress")}>
               <span> Search </span>
               <SearchOutlined style={{ fontSize: "30px" }} />
             </div>
