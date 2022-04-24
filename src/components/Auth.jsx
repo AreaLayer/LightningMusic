@@ -3,16 +3,18 @@ import { Spin } from "antd";
 
 const Auth = () => {
 
-    const {isAuthenticated, Moralis, isAuthenticating, logout, isWeb3Enabled, account } = useMoralis();
+    const {isAuthenticated, Moralis, logout, isWeb3Enabled, account } = useMoralis();
 
     const handleCustomLogin = async () => {
         try {
-        await Moralis.authenticate({
+          await Moralis.authenticate({
           provider: "web3Auth",
           clientId: "BP_dGonobACd_as1e50cIsiSIvzqA3E1sIM_xVJU9JNvC5wms8Y8P82T0L5XaLjxD4KEGn7B6y-5TCO-n6hZdL4",
           chainId: 0x13881,
-          // appLogo: "./logo192.png"
+          appLogo: "./logo192.png",
+          signingMessage: "Welcome!",
         })
+          window.localStorage.setItem("connectorId", "web3Auth");
         } catch (error) {
             console.log(error);
             await Moralis.deactivateWeb3();
@@ -31,7 +33,7 @@ const Auth = () => {
     return(
         <div>
             <div className="auth" onClick={account ? handleLogout : handleCustomLogin}>
-                <Spin spinning={isAuthenticating} >{account ? "Logout" : "Authenticate"}</Spin>
+                <Spin spinning={isAuthenticated && !account} >{account ? "Logout" : "Authenticate"}</Spin>
             </div>
         </div>
     )
