@@ -12,7 +12,7 @@ contract NFT is ERC721URIStorage {
     address public owner;
 
 
-    constructor() ERC721("NonFungiMusic", "NFM") {
+    constructor() ERC721("3fiMusic", "3FM") {
         owner = msg.sender;
     }
 
