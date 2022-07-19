@@ -1,1 +1,1 @@
-#Decentralized Music Streaming Build
+## Streaming of music on Lightning Network
