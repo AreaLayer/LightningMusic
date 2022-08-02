@@ -82,11 +82,11 @@ pub struct Asset {
     /// Asset ID, which is equal to Contract ID and genesis ID
     ///
     /// It can be used as a unique primary kep
-    id: ContractId,
+    id: ContractId album
 
     /// Chain with which the asset is issued
     #[cfg_attr(feature = "serde", serde(with = "As::<DisplayFromStr>"))]
-    chain: Chain,
+    chain: Chain
 
     /// Asset creation data
     date: DateTime<Utc>,
