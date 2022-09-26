@@ -2,3 +2,8 @@
 
 Listing your favorites artists, album, EPs and many more.
 
+## Feature
+
+RGB
+
+Lightning Network
