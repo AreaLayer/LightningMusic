@@ -7,3 +7,9 @@ Listing your favorites artists, album, EPs and many more.
 RGB
 
 Lightning Network
+
+## To-Do
+
+- [ ] Mainnet
+
+- [ ] Testnet
