@@ -11,5 +11,5 @@ Lightning Network
 ## To-Do
 
 - [ ] Mainnet
-
 - [ ] Testnet
+- [ ] RGB and Lightning Network
