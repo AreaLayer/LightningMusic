@@ -8,8 +8,10 @@ RGB
 
 Lightning Network
 
+Nostr
+
 ## To-Do
 
 - [ ] Mainnet
 - [ ] Testnet
-- [ ] RGB and Lightning Network
+- [ ] RGB,Lightning Network, Nostr
