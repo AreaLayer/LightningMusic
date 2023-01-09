@@ -9,6 +9,7 @@ use lnpbp::chain::Chain;
 use rgb::nonfungible::allocation::Allocation;
 use rgb::nonfungible::amount::{FractionalAmount, PreciseAmount};
 use rgb::prelude::*;
+use storm::database;
 use seals::txout::{TxoSeal, WitnessVoutError};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
