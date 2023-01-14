@@ -14,4 +14,4 @@ Nostr
 
 - [ ] Mainnet
 - [ ] Testnet
-- [ ] RGB,Lightning Network, Nostr
+- [ ] RGB,Lightning Network,  Storm and Nostr
