@@ -13,5 +13,5 @@ Nostr
 ## To-Do
 
 - [ ] Mainnet
-- [ ] Testnet
+- [x] Testnet
 - [ ] RGB,Lightning Network,  Storm and Nostr
